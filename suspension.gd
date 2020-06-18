@@ -11,8 +11,8 @@ func _physics_process(delta):
 	var compression_rate := 1.0
 	if is_colliding():
 		compression_rate = compression / cast_to.length()
-		force = 7 * (1 - compression_rate)
-		force -= 0.5 * vehicle.linear_velocity.y
-		force = force * vehicle.mass
-		vehicle.add_force(force * collision_normal, translation)
+		force = 600 * clamp(1 - compression_rate, 0, 1)
+		force = force * vehicle.mass * delta
+		var force_pos = global_transform.origin - vehicle.global_transform.origin
+		vehicle.add_force(force * collision_normal, force_pos)
 	$Label.text = "%.2f" % compression_rate
