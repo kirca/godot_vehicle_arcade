@@ -6,7 +6,7 @@ func _physics_process(delta):
 	var can_accelerate = $RearLeft.is_colliding() or $RearRight.is_colliding()
 	var can_turn = $FrontLeft.is_colliding() or $FrontRight.is_colliding()
 	if Input.is_action_pressed("ui_up") and can_accelerate:
-		add_central_force(position_node.basis[2].normalized() * 30 * mass)
+		add_central_force(position_node.basis[2].normalized() * 10 * mass)
 	if Input.is_action_pressed("ui_down") and can_accelerate:
 		add_central_force(position_node.basis[2].normalized() * -10 * mass)
 	if Input.is_action_pressed("ui_left") and can_turn:

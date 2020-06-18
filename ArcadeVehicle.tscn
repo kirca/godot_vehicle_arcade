@@ -9,7 +9,7 @@
 
 [node name="ArcadeVehicle" type="RigidBody"]
 mass = 20.0
-linear_damp = 0.85
+linear_damp = 0.2
 angular_damp = 0.99
 script = ExtResource( 2 )
 

@@ -12,6 +12,7 @@ func _physics_process(delta):
 	if is_colliding():
 		compression_rate = compression / cast_to.length()
 		force = 600 * clamp(1 - compression_rate, 0, 1)
+		force -= 150 * vehicle.linear_velocity.y
 		force = force * vehicle.mass * delta
 		var force_pos = global_transform.origin - vehicle.global_transform.origin
 		vehicle.add_force(force * collision_normal, force_pos)
