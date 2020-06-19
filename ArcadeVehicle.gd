@@ -1,5 +1,7 @@
 extends RigidBody
 
+const GRIP := 50
+
 
 func _physics_process(delta):
 	var position_node = $MeshInstance.get_global_transform()
@@ -15,3 +17,13 @@ func _physics_process(delta):
 		add_torque(Vector3(0, -4, 0) * mass)
 	if Input.is_action_pressed("ui_select"):
 		add_central_force(Vector3(0, 30, 0) * mass)
+	var speed = linear_velocity.length()
+	if speed > 1:
+		var side_dir = position_node.basis[0].normalized()
+		var steer_angle = rad2deg(acos(side_dir.dot(linear_velocity.normalized())))
+		var force = Vector3(0, 0, 0)
+		if steer_angle < 90:
+			force = side_dir * -speed * GRIP
+		elif steer_angle > 90:
+			force = side_dir * speed * GRIP
+		add_central_force(force)
