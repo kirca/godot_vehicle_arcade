@@ -1,7 +1,8 @@
 extends RayCast
 
 onready var vehicle := get_parent()
-const wheel_rest_height := -0.25
+onready var wheel := get_node("Wheel")
+export var WHEEL_REST_HEIGHT := -0.7
 
 func _physics_process(delta):
 	var origin = global_transform.origin
@@ -17,5 +18,5 @@ func _physics_process(delta):
 		force = force * vehicle.mass * delta
 		var force_pos = global_transform.origin - vehicle.global_transform.origin
 		vehicle.add_force(force * collision_normal, force_pos)
-	$Wheel.translation.y = wheel_rest_height * compression_rate
-	$Label.text = "%.2f" % compression_rate
+	if wheel:
+		wheel.translation.y = WHEEL_REST_HEIGHT * compression_rate

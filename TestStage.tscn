@@ -1,6 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://ArcadeVehicle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ArcadeMotorcycle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ArcadeCar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TestStage.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -26,7 +28,8 @@ albedo_color = Color( 0.027451, 0.0862745, 0.937255, 1 )
 [sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.0117647, 0.00392157, 0.945098, 1 )
 
-[node name="Spatial" type="Spatial"]
+[node name="TestStage" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 39.8606, 0, 0, 0, 0.00966501, 0, 0, 0, 41.8197, 0, 0, 0 )
@@ -40,12 +43,6 @@ shape = SubResource( 3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.553377, 0.832931, 0, -0.832931, 0.553377, 0, 8.38244, 0 )
-
-[node name="ArcadeVehicle" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72097, 0.844227, 0 )
-
-[node name="Camera" type="Camera" parent="ArcadeVehicle"]
-transform = Transform( -1, 0, -3.25841e-07, -1.75814e-08, 0.998543, 0.0539568, 3.25367e-07, 0.0539568, -0.998543, 0, 1.22456, -4.69514 )
 
 [node name="Obstacle" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81986, 1.0909, -16.0851 )
@@ -136,3 +133,9 @@ material/0 = SubResource( 10 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Ramp2"]
 shape = SubResource( 9 )
+
+[node name="ArcadeMotorcycle" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.68549, 1.10241, 0 )
+
+[node name="ArcadeCar" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.195724, 0, -0.980659, 0, 1, 0, 0.980659, 0, 0.195724, 23.1355, 0.491769, 6.42976 )

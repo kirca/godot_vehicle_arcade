@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://suspension.gd" type="Script" id=1]
 [ext_resource path="res://ArcadeVehicle.gd" type="Script" id=2]
+[ext_resource path="res://Camera.gd" type="Script" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -9,11 +10,14 @@
 
 [sub_resource type="CylinderMesh" id=3]
 
-[node name="ArcadeVehicle" type="RigidBody"]
+[node name="ArcadeCar" type="RigidBody"]
 mass = 20.0
 linear_damp = 0.2
 angular_damp = 0.99
 script = ExtResource( 2 )
+ACCELERATION = 10
+TURN = 5
+JUMP = 60
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 0 )
@@ -29,6 +33,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 0.8 )
 enabled = true
 cast_to = Vector3( 0, -0.6, 0 )
 script = ExtResource( 1 )
+WHEEL_REST_HEIGHT = -0.25
 
 [node name="Label" type="Label" parent="FrontLeft"]
 visible = false
@@ -51,6 +56,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 0.8 )
 enabled = true
 cast_to = Vector3( 0, -0.6, 0 )
 script = ExtResource( 1 )
+WHEEL_REST_HEIGHT = -0.25
 
 [node name="Label" type="Label" parent="FrontRight"]
 visible = false
@@ -73,6 +79,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -0.8 )
 enabled = true
 cast_to = Vector3( 0, -0.6, 0 )
 script = ExtResource( 1 )
+WHEEL_REST_HEIGHT = -0.25
 
 [node name="Label" type="Label" parent="RearRight"]
 visible = false
@@ -95,6 +102,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, -0.8 )
 enabled = true
 cast_to = Vector3( 0, -0.6, 0 )
 script = ExtResource( 1 )
+WHEEL_REST_HEIGHT = -0.25
 
 [node name="Label" type="Label" parent="RearLeft"]
 visible = false
@@ -111,3 +119,6 @@ __meta__ = {
 transform = Transform( -1.1714e-08, -0.0719002, 0, 0.283311, -4.61571e-08, 0, 0, 0, 0.283311, 0.351436, -0.125906, 0.00739813 )
 mesh = SubResource( 3 )
 material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+script = ExtResource( 3 )
